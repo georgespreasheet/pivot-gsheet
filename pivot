@@ -1,0 +1,13 @@
+function copyPivot() {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Nom de la feuille');
+  var pivot = sheet.getPivotTables()[0]; // Récupère le premier pivot de la feuille
+  
+  // Récupère la plage de données du pivot
+  var dataRange = pivot.getDataRange();
+  
+  // Copie la plage de données du pivot
+  var copiedRange = dataRange.copyTo(sheet.getRange('A1'), {formatOnly:true});
+  
+  // Copie la mise en forme du pivot
+  dataRange.copyFormatToRange(sheet, copiedRange.getColumn(), copiedRange.getLastColumn(), copiedRange.getRow(), copiedRange.getLastRow());
+}
